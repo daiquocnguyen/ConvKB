@@ -6,7 +6,8 @@ This program provides the implementation of the CNN-based model ConvKB for the k
           author={Dai Quoc Nguyen and Tu Dinh Nguyen and Dat Quoc Nguyen and Dinh Phung},
           title={{A Novel Embedding Model for Knowledge Base Completion Based on Convolutional Neural Network}},
           booktitle={Proceedings of the 16th Annual Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT)},
-          year={2018}
+          year={2018},
+          pages={327--333}
           }
   
 Please cite the paper whenever ConvKB is used to produce published results or incorporated into other software. I would highly appreciate to have your bug reports, comments and suggestions about ConvKB. As a free open-source implementation, ConvKB is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
