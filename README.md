@@ -15,7 +15,7 @@ Please cite the paper whenever ConvKB is used to produce published results or in
 ConvKB is free for non-commercial use and distributed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA) License. 
 
 <p align="center"> 
-<img src="https://github.com/daiquocnguyen/ConvKB/blob/master/model.png">
+<img src="https://github.com/daiquocnguyen/ConvKB/blob/master/model.png" width="344" height="400">
 </p>
 
 ## Usage
