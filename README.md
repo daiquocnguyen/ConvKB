@@ -22,8 +22,8 @@ ConvKB is free for non-commercial use and distributed under the Creative Commons
 
 ### Requirements
 - Python 3
-- Tensorflow > 1.2
-- Numpy
+- Tensorflow 1.2/1.4
+
 ### Training
 To run the program, perform:
 
