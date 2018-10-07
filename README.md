@@ -22,12 +22,12 @@ ConvKB is free for non-commercial use and distributed under the Creative Commons
 
 ### Requirements
 - Python 3
-- Tensorflow 1.2/1.4
+- Tensorflow >= 1.6
 
 ### Training
 To run the program, perform:
 
-        python train.py --embedding_dim <int> --num_filters <int> --learning_rate <float> --name <dataset_name> --useConstantInit <boolean> --model_name <name_of_saved_model>
+        python train.py --embedding_dim <int> --num_filters <int> --learning_rate <float> --name <dataset_name> [--useConstantInit] --model_name <name_of_saved_model>
 
 **Required parameters:** 
 
@@ -39,7 +39,7 @@ To run the program, perform:
 
 `--name`: Dataset name (WN18RR or FB15k-237).
 
-`--useConstantInit`: Use `False` to initialize filters by a truncated normal distribution. Use `True` to initialize filters by [0.1, 0.1, -0.1].
+`--useConstantInit`: Initialize filters by a truncated normal distribution. Use `True` to initialize filters by [0.1, 0.1, -0.1].
 
 `--model_name`: Name of saved models.
 
@@ -59,9 +59,9 @@ To run the program, perform:
 
 To reproduce the ConvKB results published in the paper, execute:      
                 
-        $ python train.py --embedding_dim 100 --num_filters 50 --learning_rate 0.000005 --name FB15k-237 --useConstantInit True --model_name fb15k237
+        $ python train.py --embedding_dim 100 --num_filters 50 --learning_rate 0.000005 --name FB15k-237 --useConstantInit --model_name fb15k237
         
-        $ python train.py --embedding_dim 50 --num_filters 500 --learning_rate 0.0001 --name WN18RR --useConstantInit False --model_name wn18rr
+        $ python train.py --embedding_dim 50 --num_filters 500 --learning_rate 0.0001 --name WN18RR --model_name wn18rr --saveStep 50
         
 ### Evaluation metrics
 
@@ -69,9 +69,9 @@ The program provides ranking-based scores as evaluation metrics, including the m
 
 Run `evalFB15k-237.sh` and `evalWN18RR.sh` for evaluating the task. Depend on the memory resources, you can easily change the values of `--num_splits` and `--testIdx` in the files `.sh` to get a faster evaluation. To get the results, (supposing `num_splits = 8`) execute:
         
-        $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit True --model_name fb15k237 --num_splits 8 --decode False
+        $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit --model_name fb15k237 --num_splits 8 --decode False
         
-        $ python eval.py --embedding_dim 50 --num_filters 500 --name WN18RR --useConstantInit False --model_name wn18rr --num_splits 8 --decode False
+        $ python eval.py --embedding_dim 50 --num_filters 500 --name WN18RR --model_name wn18rr --num_splits 8 --decode False
          
 ## Acknowledgments     
 
