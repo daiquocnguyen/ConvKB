@@ -69,9 +69,9 @@ The program provides ranking-based scores as evaluation metrics, including the m
 
 Run `evalFB15k-237.sh` and `evalWN18RR.sh` for evaluating the task. Depend on the memory resources, you can easily change the values of `--num_splits` and `--testIdx` in the files `.sh` to get a faster evaluation. To get the results, (supposing `num_splits = 8`) execute:
         
-        $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit --model_name fb15k237 --num_splits 8 --decode False
+        $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit --model_name fb15k237 --num_splits 8 --decode
         
-        $ python eval.py --embedding_dim 50 --num_filters 500 --name WN18RR --model_name wn18rr --num_splits 8 --decode False
+        $ python eval.py --embedding_dim 50 --num_filters 500 --name WN18RR --model_name wn18rr --num_splits 8 --decode
          
 ## Acknowledgments     
 
