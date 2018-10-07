@@ -23,7 +23,7 @@ class ConvKB(object):
             if pre_trained == []:
                 self.W = tf.Variable(tf.random_uniform([vocab_size, embedding_size], -math.sqrt(1.0/embedding_size), math.sqrt(1.0/embedding_size), seed=1234), name="W")
             else:
-                self.W = tf.get_variable(name="W2", initializer=pre_trained, trainable=is_trainable)
+                self.W = tf.get_variable(name="W2", initializer=pre_trained) #trainable=is_trainable)
 
             self.embedded_chars = tf.nn.embedding_lookup(self.W, self.input_x)
             self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)
