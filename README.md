@@ -39,7 +39,7 @@ To run the program, perform:
 
 `--name`: Dataset name (WN18RR or FB15k-237).
 
-`--useConstantInit`: Initialize filters by a truncated normal distribution. Use `True` to initialize filters by [0.1, 0.1, -0.1].
+`--useConstantInit`: Initialize filters by [0.1, 0.1, -0.1]. Otherwise, initialize filters by a truncated normal distribution.
 
 `--model_name`: Name of saved models.
 
