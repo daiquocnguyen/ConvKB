@@ -67,7 +67,7 @@ To reproduce the ConvKB results published in the paper, execute:
 
 The program provides ranking-based scores as evaluation metrics, including the mean rank, the mean reciprocal rank and Hits@10 in a setting protocol "Filtered".
 
-Run `evalFB15k-237.sh` and `evalWN18RR.sh` for evaluating the task. Depend on the memory resources, you can easily change the values of `--num_splits` and `--testIdx` in the files `.sh` to get a faster evaluation. To get the results, (supposing `num_splits = 8`) execute:
+You now can run `evalFB15k-237.sh` and `evalWN18RR.sh` for the evaluation. Depend on the memory resources, you should change the values of `--num_splits` and `--testIdx` to suitable values to get a faster evaluation. To get the results, (supposing `num_splits = 8`) execute:
         
         $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit --model_name fb15k237 --num_splits 8 --decode
         
