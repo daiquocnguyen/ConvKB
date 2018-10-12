@@ -25,7 +25,7 @@ ConvKB is free for non-commercial use and distributed under the Creative Commons
 - Tensorflow >= 1.6
 
 ### Training
-To run the program, perform:
+To run the program:
 
         python train.py --embedding_dim <int> --num_filters <int> --learning_rate <float> --name <dataset_name> [--useConstantInit] --model_name <name_of_saved_model>
 
@@ -57,7 +57,7 @@ To run the program, perform:
 
 ### Reproduce the ConvKB results 
 
-To reproduce the ConvKB results published in the paper, execute:      
+To reproduce the ConvKB results published in the paper:      
                 
         $ python train.py --embedding_dim 100 --num_filters 50 --learning_rate 0.000005 --name FB15k-237 --useConstantInit --model_name fb15k237
         
@@ -65,9 +65,9 @@ To reproduce the ConvKB results published in the paper, execute:
         
 ### Evaluation metrics
 
-The program provides ranking-based scores as evaluation metrics, including the mean rank, the mean reciprocal rank and Hits@10 in a setting protocol "Filtered".
+File `eval.py` provides ranking-based scores as evaluation metrics, including the mean rank, the mean reciprocal rank and Hits@10 in a setting protocol "Filtered".
 
-You now can run `evalFB15k-237.sh` and `evalWN18RR.sh` for the evaluation. Depend on the memory resources, you should change the values of `--num_splits` and `--testIdx` to suitable values to get a faster evaluation. To get the results, (supposing `num_splits = 8`) execute:
+Files `evalFB15k-237.sh` and `evalWN18RR.sh` contain evaluation commands. Depending on the memory resources, you should change the value of `--num_splits` to a suitable value to get a faster process. To get the results (supposing `num_splits = 8`):
         
         $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit --model_name fb15k237 --num_splits 8 --decode
         
