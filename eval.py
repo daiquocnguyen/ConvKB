@@ -185,9 +185,9 @@ else:
                             else:  # 'tail'
                                 new_x_batch[:, 2] = entity_array
 
-                            while len(new_x_batch) % ((int(args.neg_ratio) + 1) * args.batch_size) != 0:
-                                new_x_batch = np.append(new_x_batch, [x_batch[i]], axis=0)
-                                new_y_batch = np.append(new_y_batch, [y_batch[i]], axis=0)
+                            #while len(new_x_batch) % ((int(args.neg_ratio) + 1) * args.batch_size) != 0:
+                            #    new_x_batch = np.append(new_x_batch, [x_batch[i]], axis=0)
+                            #    new_y_batch = np.append(new_y_batch, [y_batch[i]], axis=0)
 
                             if head_or_tail == 'head':
                                 entity_array1 = new_x_batch[:, 0]
