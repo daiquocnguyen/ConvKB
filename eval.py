@@ -202,6 +202,7 @@ else:
                                 if (tmpTriple in train) or (tmpTriple in valid) or (tmpTriple in test):
                                     lstIdx.append(tmpIdxTriple)
                             new_x_batch = np.delete(new_x_batch, lstIdx, axis=0)
+                            new_y_batch = np.delete(new_y_batch, lstIdx, axis=0)
 
                             # while len(new_x_batch) % ((int(args.neg_ratio) + 1) * args.batch_size) != 0:
                             #    new_x_batch = np.append(new_x_batch, [x_batch[i]], axis=0)
