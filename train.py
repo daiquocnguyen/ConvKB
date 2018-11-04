@@ -14,7 +14,7 @@ from model import ConvKB
 parser = ArgumentParser("CapsE", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
 
 parser.add_argument("--data", default="./data/", help="Data sources.")
-parser.add_argument("--run_folder", default="../", help="Data sources.")
+parser.add_argument("--run_folder", default="../../../../", help="Data sources.")
 parser.add_argument("--name", default="WN18RR", help="Name of the dataset.")
 
 parser.add_argument("--embedding_dim", default=50, type=int, help="Dimensionality of character embedding")
@@ -104,7 +104,6 @@ with tf.Graph().as_default():
             num_filters=args.num_filters,
             vocab_size=len(words_indexes),
             l2_reg_lambda=args.l2_reg_lambda,
-            batch_size=(int(args.neg_ratio) + 1) * args.batch_size,
             is_trainable=args.is_trainable,
             useConstantInit=args.useConstantInit)
 

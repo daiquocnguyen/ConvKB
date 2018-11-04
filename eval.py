@@ -1,5 +1,7 @@
 import tensorflow as tf
 import numpy as np
+from scipy.stats import rankdata
+
 np.random.seed(1234)
 import os
 import time
@@ -7,12 +9,13 @@ import datetime
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from builddata import *
 from model import ConvKB
+
 # Parameters
 # ==================================================
 parser = ArgumentParser("CapsE", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
 
 parser.add_argument("--data", default="./data/", help="Data sources.")
-parser.add_argument("--run_folder", default="../", help="Data sources.")
+parser.add_argument("--run_folder", default="../../../../", help="Data sources.")
 parser.add_argument("--name", default="WN18RR", help="Name of the dataset.")
 
 parser.add_argument("--embedding_dim", default=50, type=int, help="Dimensionality of character embedding")
@@ -33,7 +36,8 @@ parser.add_argument("--model_name", default='wn18rr', help="")
 parser.add_argument("--useConstantInit", action='store_true')
 
 parser.add_argument("--model_index", default='200', help="")
-parser.add_argument("--num_splits", default=8, type=int, help="Split the validation set into 8 parts for a faster evaluation")
+parser.add_argument("--num_splits", default=8, type=int,
+                    help="Split the validation set into 8 parts for a faster evaluation")
 parser.add_argument("--testIdx", default=1, type=int, help="From 0 to 7. Index of one of 8 parts")
 parser.add_argument("--decode", action='store_false')
 
@@ -44,10 +48,11 @@ print(args)
 print("Loading data...")
 
 train, valid, test, words_indexes, indexes_words, \
-    headTailSelector, entity2id, id2entity, relation2id, id2relation = build_data(path=args.data, name=args.name)
+headTailSelector, entity2id, id2entity, relation2id, id2relation = build_data(path=args.data, name=args.name)
 data_size = len(train)
 train_batch = Batch_Loader(train, words_indexes, indexes_words, headTailSelector, \
-                           entity2id, id2entity, relation2id, id2relation, batch_size=args.batch_size, neg_ratio=args.neg_ratio)
+                           entity2id, id2entity, relation2id, id2relation, batch_size=args.batch_size,
+                           neg_ratio=args.neg_ratio)
 
 entity_array = np.array(list(train_batch.indexes_ents.keys()))
 
@@ -56,7 +61,8 @@ if args.use_pretrained == True:
     print("Using pre-trained model.")
     lstEmbed = np.empty([len(words_indexes), args.embedding_dim]).astype(np.float32)
     initEnt, initRel = init_norm_Vector(args.data + args.name + '/relation2vec' + str(args.embedding_dim) + '.init',
-                                            args.data + args.name + '/entity2vec' + str(args.embedding_dim) + '.init', args.embedding_dim)
+                                        args.data + args.name + '/entity2vec' + str(args.embedding_dim) + '.init',
+                                        args.embedding_dim)
     for _word in words_indexes:
         if _word in relation2id:
             index = relation2id[_word]
@@ -111,7 +117,7 @@ if args.decode == False:
                         if _line.strip() != '':
                             lstHT.append(list(map(float, _line.strip().split())))
             lstHT = np.array(lstHT)
-            print(_file, 'mr, mrr, hits@10 --> ',  np.sum(lstHT, axis=0)/(2 * len_test))
+            print(_file, 'mr, mrr, hits@10 --> ', np.sum(lstHT, axis=0) / (2 * len_test))
 
         print('------------------------------------')
 
@@ -134,7 +140,6 @@ else:
                 num_filters=args.num_filters,
                 vocab_size=len(words_indexes),
                 l2_reg_lambda=args.l2_reg_lambda,
-                batch_size=(int(args.neg_ratio) + 1)*args.batch_size,
                 is_trainable=args.is_trainable,
                 useConstantInit=args.useConstantInit)
 
@@ -161,6 +166,7 @@ else:
 
                     print("Loaded model", _file)
 
+
                     # Predict function to predict scores for test data
                     def predict(x_batch, y_batch, writer=None):
                         feed_dict = {
@@ -170,6 +176,7 @@ else:
                         }
                         scores = sess.run([cnn.predictions], feed_dict)
                         return scores
+
 
                     def test_prediction(x_batch, y_batch, head_or_tail='head'):
 
@@ -185,9 +192,20 @@ else:
                             else:  # 'tail'
                                 new_x_batch[:, 2] = entity_array
 
-                            while len(new_x_batch) % ((int(args.neg_ratio) + 1) * args.batch_size) != 0:
-                                new_x_batch = np.append(new_x_batch, [x_batch[i]], axis=0)
-                                new_y_batch = np.append(new_y_batch, [y_batch[i]], axis=0)
+                            lstIdx = []
+                            for tmpIdxTriple in range(len(new_x_batch)):
+                                tmpTriple = (new_x_batch[tmpIdxTriple][0], new_x_batch[tmpIdxTriple][1],
+                                             new_x_batch[tmpIdxTriple][2])
+                                if tmpTriple[0] == x_batch[i][0] and tmpTriple[1] == x_batch[i][1] and tmpTriple[2] == \
+                                        x_batch[i][2]:
+                                    continue
+                                if (tmpTriple in train) or (tmpTriple in valid) or (tmpTriple in test):
+                                    lstIdx.append(tmpIdxTriple)
+                            new_x_batch = np.delete(new_x_batch, lstIdx, axis=0)
+
+                            # while len(new_x_batch) % ((int(args.neg_ratio) + 1) * args.batch_size) != 0:
+                            #    new_x_batch = np.append(new_x_batch, [x_batch[i]], axis=0)
+                            #    new_y_batch = np.append(new_y_batch, [y_batch[i]], axis=0)
 
                             if head_or_tail == 'head':
                                 entity_array1 = new_x_batch[:, 0]
@@ -203,51 +221,40 @@ else:
                             results = np.append(results,
                                                 predict(new_x_batch[listIndexes[-1]:], new_y_batch[listIndexes[-1]:]))
 
-                            results = np.reshape(results, [entity_array1.shape[0], 1])
-                            results_with_id = np.hstack(
-                                (np.reshape(entity_array1, [entity_array1.shape[0], 1]), results))
-                            results_with_id = results_with_id[np.argsort(results_with_id[:, 1])]
-                            results_with_id = results_with_id[:, 0].astype(int)
-                            _filter = 0
-                            if head_or_tail == 'head':
-                                for tmpHead in results_with_id:
-                                    if tmpHead == x_batch[i][0]:
-                                        break
-                                    tmpTriple = (tmpHead, x_batch[i][1], x_batch[i][2])
-                                    if (tmpTriple in train) or (tmpTriple in valid) or (tmpTriple in test):
-                                        continue
-                                    else:
-                                        _filter += 1
-                            else:
-                                for tmpTail in results_with_id:
-                                    if tmpTail == x_batch[i][2]:
-                                        break
-                                    tmpTriple = (x_batch[i][0], x_batch[i][1], tmpTail)
-                                    if (tmpTriple in train) or (tmpTriple in valid) or (tmpTriple in test):
-                                        continue
-                                    else:
-                                        _filter += 1
+                            results = np.reshape(results, -1)
+                            entity_array1 = np.reshape(entity_array1, -1).astype(int)
+                            results_with_id = rankdata(results, method='min')
 
-                            mr += (_filter + 1)
-                            mrr += 1.0 / (_filter + 1)
-                            if _filter < 10:
+                            if head_or_tail == 'head':
+                                tmpIdx = np.where(entity_array1 == x_batch[i][0])
+                                _filter = results_with_id[tmpIdx[0][0]]
+
+                            else:
+                                tmpIdx = np.where(entity_array1 == x_batch[i][2])
+                                _filter = results_with_id[tmpIdx[0][0]]
+
+                            mr += _filter
+                            mrr += 1.0 / _filter
+                            if _filter <= 10:
                                 hits10 += 1
 
                         return np.array([mr, mrr, hits10])
 
                     if args.testIdx < (args.num_splits - 1):
-                        head_results = test_prediction(x_test[batch_test * args.testIdx : batch_test * (args.testIdx + 1)],
-                                                       y_test[batch_test * args.testIdx : batch_test * (args.testIdx + 1)],
-                                                       head_or_tail='head')
-                        tail_results = test_prediction(x_test[batch_test * args.testIdx : batch_test * (args.testIdx + 1)],
-                                                       y_test[batch_test * args.testIdx : batch_test * (args.testIdx + 1)],
-                                                       head_or_tail='tail')
+                        head_results = test_prediction(
+                            x_test[batch_test * args.testIdx: batch_test * (args.testIdx + 1)],
+                            y_test[batch_test * args.testIdx: batch_test * (args.testIdx + 1)],
+                            head_or_tail='head')
+                        tail_results = test_prediction(
+                            x_test[batch_test * args.testIdx: batch_test * (args.testIdx + 1)],
+                            y_test[batch_test * args.testIdx: batch_test * (args.testIdx + 1)],
+                            head_or_tail='tail')
                     else:
-                        head_results = test_prediction(x_test[batch_test * args.testIdx : len_test],
-                                                       y_test[batch_test * args.testIdx : len_test],
+                        head_results = test_prediction(x_test[batch_test * args.testIdx: len_test],
+                                                       y_test[batch_test * args.testIdx: len_test],
                                                        head_or_tail='head')
-                        tail_results = test_prediction(x_test[batch_test * args.testIdx : len_test],
-                                                       y_test[batch_test * args.testIdx : len_test],
+                        tail_results = test_prediction(x_test[batch_test * args.testIdx: len_test],
+                                                       y_test[batch_test * args.testIdx: len_test],
                                                        head_or_tail='tail')
 
                     wri = open(_file + '.eval.' + str(args.testIdx) + '.txt', 'w')
@@ -260,4 +267,3 @@ else:
                     wri.write('\n')
 
                     wri.close()
-
