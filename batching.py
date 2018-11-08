@@ -2,7 +2,7 @@ import sys, os
 import logging
 import numpy as np
 import colorsys
-import tensorflow as tf
+
 
 # Current path
 cur_path = os.path.dirname(os.path.realpath(os.path.basename(__file__)))
@@ -100,59 +100,3 @@ class Batch_Loader(object):
 
         return self.new_triples_indexes[:last_idx, :], self.new_triples_values[:last_idx]
 
-
-def convert3d(x_batch, train_triples, entity_array, entity_num, batch_size):
-    new_triples_indexes = np.tile(x_batch, [1, entity_num])
-    new_triples_indexes = np.reshape(new_triples_indexes, [batch_size, entity_num, -1])
-    new_triples_indexes[:,:,2] = entity_array
-
-    lstValue = []
-    for tmp in new_triples_indexes:
-        for _tmp in tmp:
-            if (_tmp[0], _tmp[1], _tmp[2]) in train_triples:
-                lstValue.append([1])
-            else:
-                lstValue.append([-1])
-
-    new_triples_values = np.array(lstValue).astype(np.float32)
-
-    return new_triples_indexes, new_triples_values
-
-
-def bn_layer(x, scope, is_training, epsilon=0.001, decay=0.99, reuse=None):
-    with tf.variable_scope(scope, reuse=reuse):
-        shape = x.get_shape().as_list()
-        # gamma: a trainable scale factor
-        gamma = tf.get_variable("gamma", shape[-1], initializer=tf.constant_initializer(1.0), trainable=True)
-        # beta: a trainable shift value
-        beta = tf.get_variable("beta", shape[-1], initializer=tf.constant_initializer(0.0), trainable=True)
-        moving_avg = tf.get_variable("moving_avg", shape[-1], initializer=tf.constant_initializer(0.0),
-                                     trainable=False)
-        moving_var = tf.get_variable("moving_var", shape[-1], initializer=tf.constant_initializer(1.0),
-                                     trainable=False)
-        if is_training:
-            # tf.nn.moments == Calculate the mean and the variance of the tensor x
-            avg, var = tf.nn.moments(x, np.arange(len(shape) - 1), keep_dims=True)
-            avg = tf.reshape(avg, [avg.shape.as_list()[-1]])
-            var = tf.reshape(var, [var.shape.as_list()[-1]])
-            # update_moving_avg = moving_averages.assign_moving_average(moving_avg, avg, decay)
-            update_moving_avg = tf.assign(moving_avg, moving_avg * decay + avg * (1 - decay))
-            # update_moving_var = moving_averages.assign_moving_average(moving_var, var, decay)
-            update_moving_var = tf.assign(moving_var, moving_var * decay + var * (1 - decay))
-            control_inputs = [update_moving_avg, update_moving_var]
-        else:
-            avg = moving_avg
-            var = moving_var
-            control_inputs = []
-        with tf.control_dependencies(control_inputs):
-            output = tf.nn.batch_normalization(x, avg, var, offset=beta, scale=gamma, variance_epsilon=epsilon)
-
-    return output
-
-
-def bn_layer_top(x, scope, is_training, epsilon=0.001, decay=0.99):
-    return tf.cond(
-        is_training,
-        lambda: bn_layer(x=x, scope=scope, epsilon=epsilon, decay=decay, is_training=True, reuse=None),
-        lambda: bn_layer(x=x, scope=scope, epsilon=epsilon, decay=decay, is_training=False, reuse=True),
-    )
