@@ -224,7 +224,7 @@ else:
 
                             results = np.reshape(results, -1)
                             entity_array1 = np.reshape(entity_array1, -1).astype(int)
-                            results_with_id = rankdata(results, method='min')
+                            results_with_id = rankdata(results, method='ordinal')
 
                             if head_or_tail == 'head':
                                 tmpIdx = np.where(entity_array1 == x_batch[i][0])
