@@ -196,22 +196,18 @@ else:
                             for tmpIdxTriple in range(len(new_x_batch)):
                                 tmpTriple = (new_x_batch[tmpIdxTriple][0], new_x_batch[tmpIdxTriple][1],
                                              new_x_batch[tmpIdxTriple][2])
-                                if tmpTriple[0] == x_batch[i][0] and tmpTriple[1] == x_batch[i][1] and tmpTriple[2] == \
-                                        x_batch[i][2]:
-                                    continue
-                                if (tmpTriple in train) or (tmpTriple in valid) or (tmpTriple in test):
+                                if (tmpTriple in train) or (tmpTriple in valid) or (tmpTriple in test): #also remove the valid test triple
                                     lstIdx.append(tmpIdxTriple)
                             new_x_batch = np.delete(new_x_batch, lstIdx, axis=0)
                             new_y_batch = np.delete(new_y_batch, lstIdx, axis=0)
 
+                            #thus, insert the valid test triple again, to the beginning of the array
+                            new_x_batch = np.insert(new_x_batch, 0, x_batch[i], axis=0) #thus, the index of the valid test triple is equal to 0
+                            new_y_batch = np.insert(new_y_batch, 0, y_batch[i], axis=0)
+
                             # while len(new_x_batch) % ((int(args.neg_ratio) + 1) * args.batch_size) != 0:
                             #    new_x_batch = np.append(new_x_batch, [x_batch[i]], axis=0)
                             #    new_y_batch = np.append(new_y_batch, [y_batch[i]], axis=0)
-
-                            if head_or_tail == 'head':
-                                entity_array1 = new_x_batch[:, 0]
-                            else:  # 'tail'
-                                entity_array1 = new_x_batch[:, 2]
 
                             results = []
                             listIndexes = range(0, len(new_x_batch), (int(args.neg_ratio) + 1) * args.batch_size)
@@ -223,16 +219,8 @@ else:
                                                 predict(new_x_batch[listIndexes[-1]:], new_y_batch[listIndexes[-1]:]))
 
                             results = np.reshape(results, -1)
-                            entity_array1 = np.reshape(entity_array1, -1).astype(int)
-                            results_with_id = rankdata(results, method='min')
-
-                            if head_or_tail == 'head':
-                                tmpIdx = np.where(entity_array1 == x_batch[i][0])
-                                _filter = results_with_id[tmpIdx[0][0]]
-
-                            else:
-                                tmpIdx = np.where(entity_array1 == x_batch[i][2])
-                                _filter = results_with_id[tmpIdx[0][0]]
+                            results_with_id = rankdata(results, method='ordinal')
+                            _filter = results_with_id[0]
 
                             mr += _filter
                             mrr += 1.0 / _filter
