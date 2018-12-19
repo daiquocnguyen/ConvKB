@@ -58,7 +58,7 @@ class ConvKB(object):
         
         # Add dropout
         with tf.name_scope("dropout"):
-            self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob) #need drop out?
+            self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob) 
 
         # Final (unnormalized) scores and predictions
         with tf.name_scope("output"):
@@ -71,7 +71,7 @@ class ConvKB(object):
             l2_loss += tf.nn.l2_loss(b)
             self.scores = tf.nn.xw_plus_b(self.h_drop, W, b, name="scores")
             self.predictions = tf.nn.sigmoid(self.scores)
-        # Calculate mean cross-entropy loss
+        # Calculate loss
         with tf.name_scope("loss"):
             losses = tf.nn.softplus(self.scores * self.input_y)
             self.loss = tf.reduce_mean(losses) + l2_reg_lambda * l2_loss
