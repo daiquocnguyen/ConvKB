@@ -11,7 +11,7 @@ from model import ConvKB
 
 # Parameters
 # ==================================================
-parser = ArgumentParser("CapsE", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
+parser = ArgumentParser("ConvKB", formatter_class=ArgumentDefaultsHelpFormatter, conflict_handler='resolve')
 
 parser.add_argument("--data", default="./data/", help="Data sources.")
 parser.add_argument("--run_folder", default="../", help="Data sources.")
