@@ -3,11 +3,6 @@ import numpy as np
 import math
 class ConvKB(object):
 
-    """
-    A CNN for text classification.
-    Uses an embedding layer, followed by a convolutional, max-pooling and softmax layer.
-    """
-
     def __init__(self, sequence_length, num_classes, embedding_size, filter_sizes, num_filters, vocab_size,
                  pre_trained=[], l2_reg_lambda=0.001, is_trainable=True, useConstantInit=False):
         # Placeholders for input, output and dropout
