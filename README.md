@@ -18,6 +18,12 @@ ConvKB is free for non-commercial use and distributed under the Creative Commons
 <img src="https://github.com/daiquocnguyen/ConvKB/blob/master/model.png" width="344" height="400">
 </p>
 
+## Note
+
+Update new initialization for WN18RR: MR:763, MRR:0.253 and Hits@10:56.7. Please check [our new NAACL2019 paper](https://arxiv.org/abs/1808.04122).
+
+		$ python train.py --embedding_dim 100 --num_filters 400 --learning_rate 0.00005 --name WN18RR --num_epochs 101 --saveStep 100 --model_name wn18rr_400_3
+
 ## Usage
 
 ### Requirements
@@ -62,7 +68,7 @@ To reproduce the ConvKB results published in the paper:
         $ python train.py --embedding_dim 100 --num_filters 50 --learning_rate 0.000005 --name FB15k-237 --useConstantInit --model_name fb15k237
         
         $ python train.py --embedding_dim 50 --num_filters 500 --learning_rate 0.0001 --name WN18RR --model_name wn18rr --saveStep 50
-        
+		        
 ### Evaluation metrics
 
 File `eval.py` provides ranking-based scores as evaluation metrics, including the mean rank, the mean reciprocal rank and Hits@10 in a setting protocol "Filtered".
