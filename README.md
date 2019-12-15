@@ -6,6 +6,7 @@
 
 <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/daiquocnguyen/ConvKB"><a href="https://github.com/daiquocnguyen/ConvKB/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/daiquocnguyen/ConvKB"></a>
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/daiquocnguyen/ConvKB">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/daiquocnguyen/ConvKB">
 <a href="https://github.com/daiquocnguyen/ConvKB/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/daiquocnguyen/ConvKB"></a>
 <a href="https://github.com/daiquocnguyen/ConvKB/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/daiquocnguyen/ConvKB"></a>
 <img alt="GitHub" src="https://img.shields.io/github/license/daiquocnguyen/ConvKB">
