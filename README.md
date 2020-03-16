@@ -85,13 +85,13 @@ Files `evalFB15k-237.sh` and `evalWN18RR.sh` contain evaluation commands. Depend
 Update a new initialization for WN18RR: MR:763, MRR:0.253 and Hits@10:56.7. Please check [our new NAACL2019 paper](https://arxiv.org/abs/1808.04122).
 
 	$ python train.py --embedding_dim 100 --num_filters 400 --learning_rate 0.00005 --name WN18RR --num_epochs 101 --saveStep 100 --model_name wn18rr_400_3
+	
+### Pytorch version
+
+Thanks to Deepak Nathani, a pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction 
 		
 ## License
 
 Please cite the paper whenever ConvKB is used to produce published results or incorporated into other software. I would highly appreciate to have your bug reports, comments and suggestions about ConvKB. As a free open-source implementation, ConvKB is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
 
 ConvKB  is licensed under the Apache License 2.0.
-
-## Acknowledgments     
-
-I would like to thank Denny Britz for implementing a CNN for text classification in TensorFlow.
