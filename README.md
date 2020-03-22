@@ -32,37 +32,6 @@ This program provides the implementation of the CNN-based model ConvKB for the k
 - Tensorflow >= 1.6
 
 ### Training
-To run the program:
-
-        python train.py --embedding_dim <int> --num_filters <int> --learning_rate <float> --name <dataset_name> [--useConstantInit] --model_name <name_of_saved_model>
-
-**Required parameters:** 
-
-`--embedding_dim`: Dimensionality of entity and relation embeddings.  
-
-`--num_filters`: Number of filters.
-
-`--learning_rate`: Initial learning rate.
-
-`--name`: Dataset name (WN18RR or FB15k-237).
-
-`--useConstantInit`: Initialize filters by [0.1, 0.1, -0.1]. Otherwise, initialize filters by a truncated normal distribution.
-
-`--model_name`: Name of saved models.
-
-**Optional parameters:** 
-
-`--l2_reg_lambda`: L2 regularizaion lambda (Default: 0.001).
-  
-`--dropout_keep_prob`: Dropout keep probability (Default: 1.0).
-  
-`--num_epochs`: Number of training epochs (Default: 200).
-
-`--run_folder`: Specify directory path to save trained models.
-
-`--batch_size`: Batch size.
-
-### Reproduce the ConvKB results 
 
 To reproduce the ConvKB results published in the paper:      
                 
