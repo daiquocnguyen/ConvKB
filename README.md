@@ -41,9 +41,7 @@ To reproduce the ConvKB results published in the paper:
 		        
 ### Evaluation metrics
 
-File `eval.py` provides ranking-based scores as evaluation metrics, including the mean rank, the mean reciprocal rank and Hits@10 in a setting protocol "Filtered".
-
-Files `evalFB15k-237.sh` and `evalWN18RR.sh` contain evaluation commands. Depending on the memory resources, you should change the value of `--num_splits` to a suitable value to get a faster process. To get the results (supposing `num_splits = 8`):
+Depending on the memory resources, you should change the value of `--num_splits` to a suitable value to get a faster process. To get the results (supposing `num_splits = 8`):
         
         $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit --model_name fb15k237 --num_splits 8 --decode
         
