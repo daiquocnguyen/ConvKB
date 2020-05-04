@@ -53,9 +53,11 @@ Update a new initialization for WN18RR: MR:763, MRR:0.253 and Hits@10:56.7. Plea
 
 	$ python train.py --embedding_dim 100 --num_filters 400 --learning_rate 0.00005 --name WN18RR --num_epochs 101 --saveStep 100 --model_name wn18rr_400_3
 	
-### Pytorch version
+### Other version
 
-Thanks to Deepak Nathani, a pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction 
+A tensorflow 2.x implementation of our ConvKB can be found at https://github.com/Sujit-O/pykg2vec
+
+A pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction 
 		
 ## License
 
