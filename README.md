@@ -49,9 +49,9 @@ Depending on the memory resources, you should change the value of `--num_splits`
 
 ### Other versions
 
-A tensorflow 2.x implementation of our ConvKB can be found at https://github.com/Sujit-O/pykg2vec
+A Tensorflow 2.x implementation of our ConvKB can be found at https://github.com/Sujit-O/pykg2vec
 
-A pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction/blob/master/layers.py
+A Pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction/blob/master/layers.py
 
 ### Note
 
