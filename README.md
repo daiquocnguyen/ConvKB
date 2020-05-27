@@ -39,6 +39,12 @@ To reproduce the ConvKB results published in the paper:
         
         $ python train.py --embedding_dim 50 --num_filters 500 --learning_rate 0.0001 --name WN18RR --model_name wn18rr --saveStep 50
 		        
+### Other versions
+
+A Tensorflow 2.x implementation of our ConvKB can be found at https://github.com/Sujit-O/pykg2vec
+
+A Pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction/blob/master/layers.py
+
 ### Evaluation metrics
 
 Depending on the memory resources, you should change the value of `--num_splits` to a suitable value to get a faster process. To get the results (supposing `num_splits = 8`):
@@ -46,12 +52,6 @@ Depending on the memory resources, you should change the value of `--num_splits`
         $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit --model_name fb15k237 --num_splits 8 --decode
         
         $ python eval.py --embedding_dim 50 --num_filters 500 --name WN18RR --model_name wn18rr --num_splits 8 --decode
-
-### Other versions
-
-A Tensorflow 2.x implementation of our ConvKB can be found at https://github.com/Sujit-O/pykg2vec
-
-A Pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction/blob/master/layers.py
 
 ### Note
 
