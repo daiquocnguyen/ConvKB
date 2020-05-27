@@ -11,7 +11,7 @@
 <a href="https://github.com/daiquocnguyen/ConvKB/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/daiquocnguyen/ConvKB"></a>
 <img alt="GitHub" src="https://img.shields.io/github/license/daiquocnguyen/ConvKB">
 
-This program provides the implementation of the CNN-based model ConvKB for the knowledge base completion task. ConvKB obtains new state-of-the-art results on two standard datasets: WN18RR and FB15k-237 as described in [the paper](http://www.aclweb.org/anthology/N18-2053):
+This program provides the implementation of the CNN-based model ConvKB for knowledge graph embeddings as described in [the paper](http://www.aclweb.org/anthology/N18-2053):
 
         @InProceedings{Nguyen2018,
           author={Dai Quoc Nguyen and Tu Dinh Nguyen and Dat Quoc Nguyen and Dinh Phung},
