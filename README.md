@@ -57,7 +57,7 @@ Update a new initialization for WN18RR: MR:763, MRR:0.253 and Hits@10:56.7. Plea
 
 A tensorflow 2.x implementation of our ConvKB can be found at https://github.com/Sujit-O/pykg2vec
 
-A pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction 
+A pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction/blob/master/layers.py
 		
 ## License
 
