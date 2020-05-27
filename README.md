@@ -46,18 +46,18 @@ Depending on the memory resources, you should change the value of `--num_splits`
         $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit --model_name fb15k237 --num_splits 8 --decode
         
         $ python eval.py --embedding_dim 50 --num_filters 500 --name WN18RR --model_name wn18rr --num_splits 8 --decode
-         
+
+### Other versions
+
+A tensorflow 2.x implementation of our ConvKB can be found at https://github.com/Sujit-O/pykg2vec
+
+A pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction/blob/master/layers.py
+
 ### Note
 
 Update a new initialization for WN18RR: MR:763, MRR:0.253 and Hits@10:56.7. Please check [our new NAACL2019 paper](https://arxiv.org/abs/1808.04122).
 
 	$ python train.py --embedding_dim 100 --num_filters 400 --learning_rate 0.00005 --name WN18RR --num_epochs 101 --saveStep 100 --model_name wn18rr_400_3
-	
-### Other version
-
-A tensorflow 2.x implementation of our ConvKB can be found at https://github.com/Sujit-O/pykg2vec
-
-A pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction/blob/master/layers.py
 		
 ## License
 
