@@ -29,7 +29,7 @@ This program provides the implementation of the CNN-based model ConvKB for knowl
 
 ### News
 
-- June 13: Update Pytorch (1.5.0) implementation. The ConvKB Pytorch implementation, which based on the OpenKE framework, is to deal with [the issue #5](https://github.com/daiquocnguyen/ConvKB/issues/5) to show that [the ACL2020 paper `A Re-evaluation of Knowledge Graph Completion Methods`](https://arxiv.org/abs/1911.03903) is wrong about our ConvKB.
+- June 13: Update Pytorch (1.5.0) implementation. The ConvKB Pytorch implementation, which is based on the OpenKE framework, is to deal with [the issue #5](https://github.com/daiquocnguyen/ConvKB/issues/5) to show that [the ACL2020 paper `A Re-evaluation of Knowledge Graph Completion Methods`](https://arxiv.org/abs/1911.03903) is wrong about our ConvKB.
 
 - May 30: The Tensorflow implementation was completed approximately three years ago, and now it is out-of-date. I will release the Pytorch implementation soon.
 
@@ -37,11 +37,17 @@ This program provides the implementation of the CNN-based model ConvKB for knowl
 
 ### Requirements
 
-- Python 3
-- Tensorflow >= 1.6
+- Python 3.6
+- Pytorch 1.5.0 or Tensorflow 1.6 
 
 ### Training
 
+Regarding the Pytorch implementation:
+
+	$ python train_ConvKB.py --dataset WN18RR --num_of_filters 64 --neg_num 10 --valid_step 50 --nbatches 100 --num_epochs 300 --learning_rate 0.01 --lmbda 0.2 --model_name WN18RR_300_lda-0.2_nneg-10_nfilters-64_lr-0.01 --mode train
+	
+	$ python train_ConvKB.py --dataset FB15K237 --num_of_filters 128 --neg_num 10 --valid_step 2000 --nbatches 100 --num_epochs 250 --learning_rate 0.01 --lmbda 0.1 --model_name FB15K237_lda-0.1_nneg-10_nfilters-128_lr-0.01_conv1d --mode train
+	
 Regarding the Tensorflow implementation:
                 
         $ python train.py --embedding_dim 100 --num_filters 50 --learning_rate 0.000005 --name FB15k-237 --useConstantInit --model_name fb15k237
