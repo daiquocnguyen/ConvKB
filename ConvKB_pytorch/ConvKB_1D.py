@@ -20,9 +20,9 @@ class ConvKB(Model):
         self.ent_embeddings = nn.Embedding(self.config.entTotal, self.config.hidden_size)  # vectorized quaternion
         self.rel_embeddings = nn.Embedding(self.config.relTotal, self.config.hidden_size)
 
-        self.conv1_bn = nn.BatchNorm2d(1)
-        self.conv_layer = nn.Conv2d(1, self.config.out_channels, (self.config.kernel_size, 3))  # kernel size x 3
-        self.conv2_bn = nn.BatchNorm2d(self.config.out_channels)
+        self.conv1_bn = nn.BatchNorm1d(3)
+        self.conv_layer = nn.Conv1d(3, self.config.out_channels, self.config.kernel_size)  # kernel size x 3
+        self.conv2_bn = nn.BatchNorm1d(self.config.out_channels)
         self.dropout = nn.Dropout(self.config.convkb_drop_prob)
         self.non_linearity = nn.ReLU()
         self.fc_layer = nn.Linear((self.config.hidden_size - self.config.kernel_size + 1) * self.config.out_channels, 1, bias=False)
@@ -48,9 +48,6 @@ class ConvKB(Model):
         t = t.unsqueeze(1)
 
         conv_input = torch.cat([h, r, t], 1)  # bs x 3 x dim
-        conv_input = conv_input.transpose(1, 2)
-        # To make tensor of size 4, where second dim is for input channels
-        conv_input = conv_input.unsqueeze(1)
         conv_input = self.conv1_bn(conv_input)
         out_conv = self.conv_layer(conv_input)
         out_conv = self.conv2_bn(out_conv)
