@@ -5,7 +5,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.autograd import Variable
 import numpy as np
-from .Model import Model
+from Model import Model
 from numpy.random import RandomState
 
 torch.manual_seed(123)
