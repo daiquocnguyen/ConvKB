@@ -11,7 +11,7 @@
 <a href="https://github.com/daiquocnguyen/ConvKB/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/daiquocnguyen/ConvKB"></a>
 <img alt="GitHub" src="https://img.shields.io/github/license/daiquocnguyen/ConvKB">
 
-This program provides the implementation of the CNN-based model ConvKB for knowledge graph embeddings as described in [the paper](http://www.aclweb.org/anthology/N18-2053), where we use a convolution layer with different filters of the same `m × 3` shape and then concatenate output feature maps into a single vector which is multiplied by a weight vector to produce a score for the given triple.
+This program provides the implementation of the CNN-based model ConvKB for knowledge graph embeddings as described in [the paper](http://www.aclweb.org/anthology/N18-2053). ConvKB uses a convolution layer with different filters of the same `m × 3` shape and then concatenates output feature maps into a single vector which is multiplied by a weight vector to produce a score for the given triple.
 
 	@inproceedings{Nguyen2018,
 	  author={Dai Quoc Nguyen and Tu Dinh Nguyen and Dat Quoc Nguyen and Dinh Phung},
@@ -46,7 +46,7 @@ Regarding the Pytorch implementation:
 
 	$ python train_ConvKB.py --dataset WN18RR --num_of_filters 64 --neg_num 10 --valid_step 50 --nbatches 100 --num_epochs 300 --learning_rate 0.01 --lmbda 0.2 --model_name WN18RR_300_lda-0.2_nneg-10_nfilters-64_lr-0.01 --mode train
 	
-	$ python train_ConvKB.py --dataset FB15K237 --num_of_filters 128 --neg_num 10 --valid_step 2000 --nbatches 100 --num_epochs 250 --learning_rate 0.01 --lmbda 0.1 --model_name FB15K237_lda-0.1_nneg-10_nfilters-128_lr-0.01_conv1d --mode train
+	$ python train_ConvKB.py --dataset FB15K237 --num_of_filters 128 --neg_num 10 --valid_step 50 --nbatches 100 --num_epochs 300 --learning_rate 0.01 --lmbda 0.1 --model_name FB15K237_lda-0.1_nneg-10_nfilters-128_lr-0.01 --mode train
 	
 Regarding the Tensorflow implementation:
                 
