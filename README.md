@@ -13,14 +13,6 @@
 
 This program provides the implementation of the CNN-based model ConvKB for knowledge graph embeddings as described in [the paper](http://www.aclweb.org/anthology/N18-2053). ConvKB uses a convolution layer with different filters of the same `m × 3` shape and then concatenates output feature maps into a single vector which is multiplied by a weight vector to produce a score for the given triple.
 
-	@inproceedings{Nguyen2018,
-	  author={Dai Quoc Nguyen and Tu Dinh Nguyen and Dat Quoc Nguyen and Dinh Phung},
-	  title={{A Novel Embedding Model for Knowledge Base Completion Based on Convolutional Neural Network}},
-	  booktitle={Proceedings of the 16th Annual Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT)},
-	  pages={327--333},
-	  year={2018}
-	}
-
 <p align="center"> 
 <img src="https://github.com/daiquocnguyen/ConvKB/blob/master/model.png" width="344" height="400">
 </p>
@@ -54,6 +46,17 @@ Regarding the Tensorflow implementation:
         
         $ python train.py --embedding_dim 50 --num_filters 500 --learning_rate 0.0001 --name WN18RR --model_name wn18rr --saveStep 50
 
+## Cite
+
+Please cite the paper whenever ConvKB is used to produce published results or incorporated into other software:
+
+	@inproceedings{Nguyen2018,
+	  author={Dai Quoc Nguyen and Tu Dinh Nguyen and Dat Quoc Nguyen and Dinh Phung},
+	  title={{A Novel Embedding Model for Knowledge Base Completion Based on Convolutional Neural Network}},
+	  booktitle={Proceedings of the 16th Annual Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT)},
+	  pages={327--333},
+	  year={2018}
+	}
 		
 ## License
 
