@@ -11,15 +11,15 @@
 <a href="https://github.com/daiquocnguyen/ConvKB/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/daiquocnguyen/ConvKB"></a>
 <img alt="GitHub" src="https://img.shields.io/github/license/daiquocnguyen/ConvKB">
 
-This program provides the implementation of the CNN-based model ConvKB for knowledge graph embeddings as described in [the paper](http://www.aclweb.org/anthology/N18-2053):
+This program provides the implementation of the CNN-based model ConvKB for knowledge graph embeddings as described in [the paper](http://www.aclweb.org/anthology/N18-2053), where we use a convolution layer with different filters of the same `m × 3` shape and then concatenate output feature maps into a single vector which is multiplied by a weight vector to produce a score for the given triple.
 
-        @InProceedings{Nguyen2018,
-          author={Dai Quoc Nguyen and Tu Dinh Nguyen and Dat Quoc Nguyen and Dinh Phung},
-          title={{A Novel Embedding Model for Knowledge Base Completion Based on Convolutional Neural Network}},
-          booktitle={Proceedings of the 16th Annual Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT)},
-          year={2018},
-          pages={327--333}
-          }
+	@inproceedings{Nguyen2018,
+	  author={Dai Quoc Nguyen and Tu Dinh Nguyen and Dat Quoc Nguyen and Dinh Phung},
+	  title={{A Novel Embedding Model for Knowledge Base Completion Based on Convolutional Neural Network}},
+	  booktitle={Proceedings of the 16th Annual Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT)},
+	  pages={327--333},
+	  year={2018}
+	}
 
 <p align="center"> 
 <img src="https://github.com/daiquocnguyen/ConvKB/blob/master/model.png" width="344" height="400">
@@ -27,37 +27,27 @@ This program provides the implementation of the CNN-based model ConvKB for knowl
 
 ## Usage
 
+### News
+
+- June 13: Update Pytorch (1.5.0) implementation. The ConvKB Pytorch implementation, which based on the OpenKE framework, is to deal with [the issue #5](https://github.com/daiquocnguyen/ConvKB/issues/5) to show that [the ACL2020 paper `A Re-evaluation of Knowledge Graph Completion Methods`](https://arxiv.org/abs/1911.03903) is wrong about our ConvKB.
+
+- May 30: The Tensorflow implementation was completed approximately three years ago, and now it is out-of-date. I will release the Pytorch implementation soon.
+
+- April 04: [Our new ACL2020 model](https://github.com/daiquocnguyen/R-MeN) uses a variant of ConvKB as a decoder which is built on top of a Transformer-based memory network for triple classification.
+
 ### Requirements
+
 - Python 3
 - Tensorflow >= 1.6
 
 ### Training
 
-To reproduce the ConvKB results published in the paper:      
+Regarding the Tensorflow implementation:
                 
         $ python train.py --embedding_dim 100 --num_filters 50 --learning_rate 0.000005 --name FB15k-237 --useConstantInit --model_name fb15k237
         
         $ python train.py --embedding_dim 50 --num_filters 500 --learning_rate 0.0001 --name WN18RR --model_name wn18rr --saveStep 50
-		        
-### Other versions
 
-A Tensorflow 2.x implementation of our ConvKB can be found at https://github.com/Sujit-O/pykg2vec
-
-A Pytorch implementation of our ConvKB can be found as a part from https://github.com/deepakn97/relationPrediction/blob/master/layers.py
-
-### Evaluation metrics
-
-Depending on the memory resources, you should change the value of `--num_splits` to a suitable value to get a faster process. To get the results (supposing `num_splits = 8`):
-        
-        $ python eval.py --embedding_dim 100 --num_filters 50 --name FB15k-237 --useConstantInit --model_name fb15k237 --num_splits 8 --decode
-        
-        $ python eval.py --embedding_dim 50 --num_filters 500 --name WN18RR --model_name wn18rr --num_splits 8 --decode
-
-### Note
-
-Update a new initialization for WN18RR: MR:763, MRR:0.253 and Hits@10:56.7. Please check [our new NAACL2019 paper](https://arxiv.org/abs/1808.04122).
-
-	$ python train.py --embedding_dim 100 --num_filters 400 --learning_rate 0.00005 --name WN18RR --num_epochs 101 --saveStep 100 --model_name wn18rr_400_3
 		
 ## License
 
