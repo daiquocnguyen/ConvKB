@@ -25,8 +25,6 @@ This program provides the implementation of the CNN-based model ConvKB for knowl
 
 - May 30: The Tensorflow implementation was completed approximately three years ago, and now it is out-of-date. I will release the Pytorch implementation soon.
 
-- April 04: [Our new ACL2020 model](https://github.com/daiquocnguyen/R-MeN) uses a variant of ConvKB as a decoder which is built on top of a Transformer-based memory network for triple classification.
-
 ### Requirements
 
 - Python 3.6
