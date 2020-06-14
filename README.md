@@ -37,12 +37,6 @@ Regarding the Pytorch implementation:
 	$ python train_ConvKB.py --dataset WN18RR --hidden_size 50 --num_of_filters 64 --neg_num 10 --valid_step 50 --nbatches 100 --num_epochs 300 --learning_rate 0.01 --lmbda 0.2 --model_name WN18RR_300_lda-0.2_nneg-10_nfilters-64_lr-0.01 --mode train
 	
 	$ python train_ConvKB.py --dataset FB15K237 --hidden_size 100 --num_of_filters 128 --neg_num 10 --valid_step 50 --nbatches 100 --num_epochs 300 --learning_rate 0.01 --lmbda 0.1 --model_name FB15K237_lda-0.1_nneg-10_nfilters-128_lr-0.01 --mode train
-	
-Regarding the Tensorflow implementation:
-        
-	$ python train.py --embedding_dim 50 --num_filters 500 --learning_rate 0.0001 --name WN18RR --model_name wn18rr --saveStep 50
-	
-	$ python train.py --embedding_dim 100 --num_filters 50 --learning_rate 0.000005 --name FB15k-237 --useConstantInit --model_name fb15k237
 
 ## Cite
 
