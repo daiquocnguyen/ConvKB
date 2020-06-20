@@ -27,13 +27,6 @@ parser.add_argument('--use_init', default=1, type=int, help='')
 parser.add_argument('--kernel_size', default=1, type=int, help='')
 args = parser.parse_args()
 
-if args.model_name is None or len(args.model_name.strip()) == 0:
-    args.model_name = "{}_lda-{}_nneg-{}_hs-{}_lr-{}_nepochs-{}".format(args.dataset,
-                                                                        args.lmbda,
-                                                                        args.neg_num,
-                                                                        args.hidden_size,
-                                                                        args.learning_rate,
-                                                                        args.num_epochs)
 print(args)
 
 out_dir = os.path.abspath(os.path.join("../runs_pytorch_ConvKB/"))
@@ -69,10 +62,8 @@ con.set_valid_steps(args.valid_steps)
 con.set_early_stopping_patience(10)
 con.set_checkpoint_dir(checkpoint_dir)
 con.set_result_dir(result_dir)
-# set link prediction
+# set knowledge graph completion
 con.set_test_link(True)
-# set triple classification
-con.set_test_triple(False)
 con.init()
 
 def get_term_id(filename):
@@ -103,7 +94,7 @@ def get_init_embeddings(relinit, entinit):
 if args.mode == "train":
 
     if args.use_init:
-        hidden_size = "100"
+        hidden_size = "100"  # for FB15K-237
         con.set_dimension(100)
         if args.dataset == "WN18RR":
             hidden_size = "50"
@@ -141,7 +132,7 @@ if args.mode == "train":
 
 else:
     if args.use_init:
-        hidden_size = "100"
+        hidden_size = "100"  # for FB15K-237
         con.set_dimension(100)
         if args.dataset == "WN18RR":
             hidden_size = "50"

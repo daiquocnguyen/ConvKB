@@ -126,7 +126,7 @@ class Config(object):
         self.nbatches = 100
         self.p_norm = 1
         self.test_link = True
-        self.test_triple = True
+        self.test_triple = False
         self.model = None
         self.trainModel = None
         self.testModel = None
