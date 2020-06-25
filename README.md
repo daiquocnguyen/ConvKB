@@ -11,7 +11,7 @@
 <a href="https://github.com/daiquocnguyen/ConvKB/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/daiquocnguyen/ConvKB"></a>
 <img alt="GitHub" src="https://img.shields.io/github/license/daiquocnguyen/ConvKB">
 
-This program provides the implementation of the CNN-based model ConvKB for knowledge graph embeddings as described in [the paper](http://www.aclweb.org/anthology/N18-2053). ConvKB uses a convolution layer with different filters of the same `m × 3` shape and then concatenates output feature maps into a single vector which is multiplied by a weight vector to produce a score for the given triple.
+This program provides the implementation of the CNN-based model ConvKB for knowledge graph embeddings as described in [the paper](http://www.aclweb.org/anthology/N18-2053). ConvKB uses a convolution layer with different filters of the same `1 × 3` shape and then concatenates output feature maps into a single vector which is multiplied by a weight vector to produce a score for the given triple.
 
 <p align="center"> 
 <img src="https://github.com/daiquocnguyen/ConvKB/blob/master/model.png" width="344" height="400">
