@@ -70,7 +70,7 @@ void testHead(REAL *con) {
                     if (not _find(j, t, r)) {
                         l_filter_s_constrain += 1;
                     }
-                }  
+                }
             }
         }
     }
@@ -134,7 +134,7 @@ void testTail(REAL *con) {
                     }
             }
         }
-        
+
     }
 
     if (r_filter_s < 10) r_filter_tot += 1;
@@ -172,11 +172,11 @@ void test_link_prediction() {
     r_rank /= testTotal;
     l_reci_rank /= testTotal;
     r_reci_rank /= testTotal;
- 
+
     l_tot /= testTotal;
     l3_tot /= testTotal;
     l1_tot /= testTotal;
- 
+
     r_tot /= testTotal;
     r3_tot /= testTotal;
     r1_tot /= testTotal;
@@ -186,17 +186,17 @@ void test_link_prediction() {
     r_filter_rank /= testTotal;
     l_filter_reci_rank /= testTotal;
     r_filter_reci_rank /= testTotal;
- 
+
     l_filter_tot /= testTotal;
     l3_filter_tot /= testTotal;
     l1_filter_tot /= testTotal;
- 
+
     r_filter_tot /= testTotal;
     r3_filter_tot /= testTotal;
     r1_filter_tot /= testTotal;
 
     printf("no type constraint results:\n");
-    
+
     printf("metric:\t\t\t MRR \t\t MR \t\t hit@10 \t hit@3  \t hit@1 \n");
     printf("l(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", l_reci_rank, l_rank, l_tot, l3_tot, l1_tot);
     printf("r(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", r_reci_rank, r_rank, r_tot, r3_tot, r1_tot);
@@ -208,46 +208,46 @@ void test_link_prediction() {
     printf("averaged(filter):\t %f \t %f \t %f \t %f \t %f \n",
             (l_filter_reci_rank+r_filter_reci_rank)/2, (l_filter_rank+r_filter_rank)/2, (l_filter_tot+r_filter_tot)/2, (l3_filter_tot+r3_filter_tot)/2, (l1_filter_tot+r1_filter_tot)/2);
 
-//    //type constrain
-//    l_rank_constrain /= testTotal;
-//    r_rank_constrain /= testTotal;
-//    l_reci_rank_constrain /= testTotal;
-//    r_reci_rank_constrain /= testTotal;
-//
-//    l_tot_constrain /= testTotal;
-//    l3_tot_constrain /= testTotal;
-//    l1_tot_constrain /= testTotal;
-//
-//    r_tot_constrain /= testTotal;
-//    r3_tot_constrain /= testTotal;
-//    r1_tot_constrain /= testTotal;
-//
-//    // with filter
-//    l_filter_rank_constrain /= testTotal;
-//    r_filter_rank_constrain /= testTotal;
-//    l_filter_reci_rank_constrain /= testTotal;
-//    r_filter_reci_rank_constrain /= testTotal;
-//
-//    l_filter_tot_constrain /= testTotal;
-//    l3_filter_tot_constrain /= testTotal;
-//    l1_filter_tot_constrain /= testTotal;
-//
-//    r_filter_tot_constrain /= testTotal;
-//    r3_filter_tot_constrain /= testTotal;
-//    r1_filter_tot_constrain /= testTotal;
-//
-//    printf("type constraint results:\n");
-//
-//    printf("metric:\t\t\t MRR \t\t MR \t\t hit@10 \t hit@3  \t hit@1 \n");
-//    printf("l(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", l_reci_rank_constrain, l_rank_constrain, l_tot_constrain, l3_tot_constrain, l1_tot_constrain);
-//    printf("r(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", r_reci_rank_constrain, r_rank_constrain, r_tot_constrain, r3_tot_constrain, r1_tot_constrain);
-//    printf("averaged(raw):\t\t %f \t %f \t %f \t %f \t %f \n",
-//            (l_reci_rank_constrain+r_reci_rank_constrain)/2, (l_rank_constrain+r_rank_constrain)/2, (l_tot_constrain+r_tot_constrain)/2, (l3_tot_constrain+r3_tot_constrain)/2, (l1_tot_constrain+r1_tot_constrain)/2);
-//    printf("\n");
-//    printf("l(filter):\t\t %f \t %f \t %f \t %f \t %f \n", l_filter_reci_rank_constrain, l_filter_rank_constrain, l_filter_tot_constrain, l3_filter_tot_constrain, l1_filter_tot_constrain);
-//    printf("r(filter):\t\t %f \t %f \t %f \t %f \t %f \n", r_filter_reci_rank_constrain, r_filter_rank_constrain, r_filter_tot_constrain, r3_filter_tot_constrain, r1_filter_tot_constrain);
-//    printf("averaged(filter):\t %f \t %f \t %f \t %f \t %f \n",
-//            (l_filter_reci_rank_constrain+r_filter_reci_rank_constrain)/2, (l_filter_rank_constrain+r_filter_rank_constrain)/2, (l_filter_tot_constrain+r_filter_tot_constrain)/2, (l3_filter_tot_constrain+r3_filter_tot_constrain)/2, (l1_filter_tot_constrain+r1_filter_tot_constrain)/2);
+    //type constrain
+    l_rank_constrain /= testTotal;
+    r_rank_constrain /= testTotal;
+    l_reci_rank_constrain /= testTotal;
+    r_reci_rank_constrain /= testTotal;
+
+    l_tot_constrain /= testTotal;
+    l3_tot_constrain /= testTotal;
+    l1_tot_constrain /= testTotal;
+
+    r_tot_constrain /= testTotal;
+    r3_tot_constrain /= testTotal;
+    r1_tot_constrain /= testTotal;
+
+    // with filter
+    l_filter_rank_constrain /= testTotal;
+    r_filter_rank_constrain /= testTotal;
+    l_filter_reci_rank_constrain /= testTotal;
+    r_filter_reci_rank_constrain /= testTotal;
+
+    l_filter_tot_constrain /= testTotal;
+    l3_filter_tot_constrain /= testTotal;
+    l1_filter_tot_constrain /= testTotal;
+
+    r_filter_tot_constrain /= testTotal;
+    r3_filter_tot_constrain /= testTotal;
+    r1_filter_tot_constrain /= testTotal;
+
+    printf("type constraint results:\n");
+
+    printf("metric:\t\t\t MRR \t\t MR \t\t hit@10 \t hit@3  \t hit@1 \n");
+    printf("l(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", l_reci_rank_constrain, l_rank_constrain, l_tot_constrain, l3_tot_constrain, l1_tot_constrain);
+    printf("r(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", r_reci_rank_constrain, r_rank_constrain, r_tot_constrain, r3_tot_constrain, r1_tot_constrain);
+    printf("averaged(raw):\t\t %f \t %f \t %f \t %f \t %f \n",
+            (l_reci_rank_constrain+r_reci_rank_constrain)/2, (l_rank_constrain+r_rank_constrain)/2, (l_tot_constrain+r_tot_constrain)/2, (l3_tot_constrain+r3_tot_constrain)/2, (l1_tot_constrain+r1_tot_constrain)/2);
+    printf("\n");
+    printf("l(filter):\t\t %f \t %f \t %f \t %f \t %f \n", l_filter_reci_rank_constrain, l_filter_rank_constrain, l_filter_tot_constrain, l3_filter_tot_constrain, l1_filter_tot_constrain);
+    printf("r(filter):\t\t %f \t %f \t %f \t %f \t %f \n", r_filter_reci_rank_constrain, r_filter_rank_constrain, r_filter_tot_constrain, r3_filter_tot_constrain, r1_filter_tot_constrain);
+    printf("averaged(filter):\t %f \t %f \t %f \t %f \t %f \n",
+            (l_filter_reci_rank_constrain+r_filter_reci_rank_constrain)/2, (l_filter_rank_constrain+r_filter_rank_constrain)/2, (l_filter_tot_constrain+r_filter_tot_constrain)/2, (l3_filter_tot_constrain+r3_filter_tot_constrain)/2, (l1_filter_tot_constrain+r1_filter_tot_constrain)/2);
 }
 
 /*=====================================================================================
@@ -286,7 +286,7 @@ void getNegValid() {
         fprintf(fout, "%ld\t%ld\t%ld\t%ld\n", negValidList[i].h, negValidList[i].t, negValidList[i].r, INT(-1));
     }
     fclose(fout);
-    */  
+    */
 }
 
 extern "C"
@@ -370,7 +370,7 @@ REAL test_triple_classification(REAL *relThresh, REAL *score_pos, REAL *score_ne
             total += 2;
         }
         testAcc[r] = 1.0 * correct / total;
-        aveCorrect += correct; 
+        aveCorrect += correct;
         aveTotal += total;
     }
     aveAcc = 1.0 * aveCorrect / aveTotal;
