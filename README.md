@@ -40,8 +40,8 @@ Regarding the Pytorch implementation:
 	
 |Dataset	|	Normal setting (MR-MRR-Hits@10)	|	[Using type constraints](https://github.com/thunlp/OpenKE/tree/OpenKE-PyTorch(old)) (MR-MRR-Hits@10)	|
 |:-:		|:-:	|:-:  |
-|WN18RR 	|2741 - 0.220 - 50.83	|1377 - 0.259 - 54.99	|
-|FB15K-237	|196 - 0.302 - 48.31	|105 - 0.338 - 52.72	|
+|WN18RR 	|2741 - 0.220 - 50.8	|1377 - 0.259 - 54.9	|
+|FB15K-237	|196 - 0.302 - 48.3	|105 - 0.338 - 52.7	|
 
 ## Cite
 
