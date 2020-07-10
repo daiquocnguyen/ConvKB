@@ -38,7 +38,7 @@ Regarding the Pytorch implementation:
 	
 	$ python train_ConvKB.py --dataset FB15K237 --hidden_size 100 --num_of_filters 128 --neg_num 10 --valid_step 50 --nbatches 100 --num_epochs 300 --learning_rate 0.01 --lmbda 0.1 --model_name FB15K237_lda-0.1_nneg-10_nfilters-128_lr-0.01 --mode train
 	
-|Dataset	|	Normal setting (MR-MRR-Hits@10)	|	[Using type constraints](https://github.com/thunlp/OpenKE/tree/OpenKE-PyTorch(old)) (MR-MRR-Hits@10)	|
+|Dataset	|	Standard setting (MR-MRR-Hits@10)	|	[Using type constraints](https://github.com/thunlp/OpenKE/tree/OpenKE-PyTorch(old)) (MR-MRR-Hits@10)	|
 |:-:		|:-:	|:-:  |
 |WN18RR 	|2741 - 0.220 - 50.8	|1377 - 0.259 - 54.9	|
 |FB15K-237	|196 - 0.302 - 48.3	|105 - 0.338 - 52.7	|
