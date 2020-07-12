@@ -21,7 +21,7 @@ This program provides the implementation of the CNN-based model ConvKB for knowl
 
 ### News
 
-- June 13: Update Pytorch (1.5.0) implementation. The ConvKB Pytorch implementation, which is based on the OpenKE framework, is to deal with [the issue #5](https://github.com/daiquocnguyen/ConvKB/issues/5) to show that [the ACL2020 paper `A Re-evaluation of Knowledge Graph Completion Methods`](https://arxiv.org/abs/1911.03903) is not fair when re-evaluating our ConvKB.
+- June 13: Update Pytorch (1.5.0) implementation. The ConvKB Pytorch implementation, which is based on the OpenKE framework, is to deal with [the issue #5](https://github.com/daiquocnguyen/ConvKB/issues/5).
 
 - May 30: The Tensorflow implementation was completed approximately three years ago, and now it is out-of-date. I will release the Pytorch implementation soon.
 
