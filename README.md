@@ -21,11 +21,11 @@ This program provides the implementation of the CNN-based model ConvKB for knowl
 
 ### News
 
-- June 13: Update Pytorch (1.5.0) implementation. The ConvKB Pytorch implementation, which is based on the OpenKE framework, is to deal with [the issue #5](https://github.com/daiquocnguyen/ConvKB/issues/5#issuecomment-634568519).
+- June 13, 2020: Update Pytorch (1.5.0) implementation. The ConvKB Pytorch implementation, which is based on the OpenKE framework, is to deal with [the issue #5](https://github.com/daiquocnguyen/ConvKB/issues/5#issuecomment-634568519).
 
-- May 30: The Tensorflow implementation was completed approximately three years ago, and now it is out-of-date. I will release the Pytorch implementation soon.
+- May 30, 2020: The Tensorflow implementation was completed approximately three years ago, and now it is out-of-date. I will release the Pytorch implementation soon.
 
-- Note that our Tensorflow implementation can be tuned to leverage different filters of different `n × 3` shapes. We can tune the hyper-parameter `n`, but we set `n` to `1` for simplification in our paper.
+- March 06, 2018: Note that our Tensorflow implementation can leverage different filters of different `n × 3` shapes. We can tune the hyper-parameter `n`, but we set `n` to `1` for simplification in our paper.
 
 ### Requirements
 
