@@ -25,7 +25,7 @@ This program provides the implementation of the CNN-based model ConvKB for knowl
 
 - May 30, 2020: The Tensorflow implementation was completed approximately three years ago, and now it is out-of-date. I will release the Pytorch implementation soon.
 
-- March 06, 2018: Note that our Tensorflow implementation can leverage different filters of different `n × 3` shapes. We can tune the hyper-parameter `n`, but we set `n` to `1` for simplification in our paper.
+- March 06, 2018: Note that our Tensorflow implementation can leverage different filters of different `n × 3` shapes. We can tune the hyper-parameter `n`, but we set `n` to `1` in our paper for simplification.
 
 ### Requirements
 
