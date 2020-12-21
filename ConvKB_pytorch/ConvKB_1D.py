@@ -24,7 +24,7 @@ class ConvKB(Model):
         self.conv_layer = nn.Conv1d(3, self.config.out_channels, self.config.kernel_size)  # kernel size x 3
         self.conv2_bn = nn.BatchNorm1d(self.config.out_channels)
         self.dropout = nn.Dropout(self.config.convkb_drop_prob)
-        self.non_linearity = nn.ReLU()
+        self.non_linearity = nn.ReLU() # you should also tune with torch.tanh() or torch.nn.Tanh()
         self.fc_layer = nn.Linear((self.config.hidden_size - self.config.kernel_size + 1) * self.config.out_channels, 1, bias=False)
 
         self.criterion = nn.Softplus()
