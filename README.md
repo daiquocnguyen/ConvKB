@@ -34,7 +34,7 @@ This program provides the implementation of the CNN-based model ConvKB for knowl
 
 ### Training
 
-Regarding the Pytorch implementation:
+Regarding the Pytorch implementation, you should run ''bash make.sh'' to compile the base package and then use the commands as:
 
 	$ python train_ConvKB.py --dataset WN18RR --hidden_size 50 --num_of_filters 64 --neg_num 10 --valid_step 50 --nbatches 100 --num_epochs 300 --learning_rate 0.01 --lmbda 0.2 --model_name WN18RR_lda-0.2_nneg-10_nfilters-64_lr-0.01 --mode train
 	
